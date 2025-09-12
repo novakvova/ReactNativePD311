@@ -5,6 +5,8 @@ VisualStudioVersion = 17.14.36429.23 d17.14
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApiAtb", "WebApiAtb\WebApiAtb.csproj", "{79D4DDA4-52C9-4778-A042-32DF2AC5334B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "Domain\Domain.csproj", "{CCDA9A75-DAB0-4DC8-8532-351D39765DCA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{79D4DDA4-52C9-4778-A042-32DF2AC5334B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{79D4DDA4-52C9-4778-A042-32DF2AC5334B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{79D4DDA4-52C9-4778-A042-32DF2AC5334B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CCDA9A75-DAB0-4DC8-8532-351D39765DCA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CCDA9A75-DAB0-4DC8-8532-351D39765DCA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CCDA9A75-DAB0-4DC8-8532-351D39765DCA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CCDA9A75-DAB0-4DC8-8532-351D39765DCA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
