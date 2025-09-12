@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApiAtb", "WebApiAtb\WebA
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "Domain\Domain.csproj", "{CCDA9A75-DAB0-4DC8-8532-351D39765DCA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core", "Core\Core.csproj", "{3554CDFA-FB87-4A6D-9EA6-7221EB991999}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{CCDA9A75-DAB0-4DC8-8532-351D39765DCA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CCDA9A75-DAB0-4DC8-8532-351D39765DCA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CCDA9A75-DAB0-4DC8-8532-351D39765DCA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3554CDFA-FB87-4A6D-9EA6-7221EB991999}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3554CDFA-FB87-4A6D-9EA6-7221EB991999}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3554CDFA-FB87-4A6D-9EA6-7221EB991999}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3554CDFA-FB87-4A6D-9EA6-7221EB991999}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

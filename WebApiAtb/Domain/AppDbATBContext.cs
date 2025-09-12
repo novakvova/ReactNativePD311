@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Domain.Entities;
+using Microsoft.EntityFrameworkCore;
 
 namespace Domain;
 
@@ -8,5 +9,5 @@ public class AppDbATBContext : DbContext
     {
     }
 
-    public DbSet<Entities.CategoryEntity> Categories { get; set; } = null!;
+    public DbSet<CategoryEntity> Categories { get; set; } = null!;
 }
