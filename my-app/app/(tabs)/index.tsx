@@ -5,8 +5,23 @@ import { HelloWave } from '@/components/HelloWave';
 import ParallaxScrollView from '@/components/ParallaxScrollView';
 import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
+import {useEffect} from "react";
+import axios from "axios";
 
 export default function HomeScreen() {
+    useEffect(() => {
+        const url = "http://10.0.2.2:5109/api/categories";
+        axios.get(url)
+            .then(resp=> {
+                console.log("Server result", resp.data);
+            })
+            .catch(errors => {
+                console.error("Error", errors);
+            });
+
+        console.log("---Working use index app---");
+    }, []);
+
   return (
     <ParallaxScrollView
       headerBackgroundColor={{ light: '#A1CEDC', dark: '#1D3D47' }}
@@ -17,7 +32,7 @@ export default function HomeScreen() {
         />
       }>
       <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title">Привіт козаки</ThemedText>
+        <ThemedText type="title">Привіт козаки--</ThemedText>
         <HelloWave />
       </ThemedView>
       <ThemedView style={styles.stepContainer}>
