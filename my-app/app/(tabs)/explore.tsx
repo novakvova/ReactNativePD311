@@ -1,5 +1,5 @@
 import { Image } from 'expo-image';
-import { Platform, StyleSheet } from 'react-native';
+import {Platform, StyleSheet, Text, View} from 'react-native';
 
 import { Collapsible } from '@/components/Collapsible';
 import { ExternalLink } from '@/components/ExternalLink';
@@ -20,6 +20,12 @@ export default function TabTwoScreen() {
           style={styles.headerImage}
         />
       }>
+
+        <View className="flex-1 items-center justify-center bg-white">
+            <Text className="text-2xl font-bold text-red-700">
+                Welcome to Nativewind!
+            </Text>
+        </View>
       <ThemedView style={styles.titleContainer}>
         <ThemedText type="title">Explore</ThemedText>
       </ThemedView>
