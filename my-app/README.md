@@ -4,6 +4,100 @@
 npx create-expo-app@latest
 ```
 
+## React native
+```
+npm install nativewind react-native-reanimated@~3.17.4 react-native-safe-area-context@5.4.0
+npm install --dev tailwindcss@^3.4.17 prettier-plugin-tailwindcss@^0.5.11
+```
+
+## Add tailwind.config.js
+```
+/** @type {import('tailwindcss').Config} */
+module.exports = {
+  // NOTE: Update this to include the paths to all of your component files.
+  content: ["./app/**/*.{js,jsx,ts,tsx}", "./components/**/*.{js,jsx,ts,tsx}"],
+  presets: [require("nativewind/preset")],
+  theme: {
+    extend: {},
+  },
+  plugins: [],
+}
+```
+
+## Add global.css
+```
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+```
+
+## Add babel.config.js
+```
+module.exports = function (api) {
+  api.cache(true);
+  return {
+    presets: [
+      ["babel-preset-expo", { jsxImportSource: "nativewind" }],
+      "nativewind/babel",
+    ],
+  };
+};
+```
+
+## Add metro.config.js
+```
+const { getDefaultConfig } = require("expo/metro-config");
+const { withNativeWind } = require('nativewind/metro');
+ 
+const config = getDefaultConfig(__dirname)
+ 
+module.exports = withNativeWind(config, { input: './global.css' })
+```
+
+## Import app\_layout.tsx
+```
+import "../global.css";
+```
+
+## Modify your app.json
+```
+{
+  "expo": {
+    "web": {
+      "bundler": "metro"
+    }
+  }
+}
+```
+
+## Add new lib
+```
+npm i -D react-native-worklets
+```
+
+## Update bable.config.js
+```
+module.exports = function (api) {
+    api.cache(true);
+    return {
+        presets: [
+            ["babel-preset-expo", { jsxImportSource: "nativewind" }],
+            "nativewind/babel",
+        ],
+        plugins: [
+            // ВАЖЛИВО: цей плагін має бути останнім
+            "react-native-reanimated/plugin",
+        ],
+    };
+};
+```
+
+## Clear cache
+```
+npm start -- --reset-cache
+npx expo start --clear
+```
+
 Install choco in PowerShell
 ```
 Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
