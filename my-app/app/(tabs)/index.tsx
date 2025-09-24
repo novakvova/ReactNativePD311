@@ -1,7 +1,6 @@
 import { Image } from 'expo-image';
-import { Platform, StyleSheet, FlatList, View, Text } from 'react-native';
-import { HelloWave } from '@/components/HelloWave';
-import ParallaxScrollView from '@/components/ParallaxScrollView';
+import {  StyleSheet, FlatList, View, Text } from 'react-native';
+
 import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
 import {useEffect, useState} from "react";
