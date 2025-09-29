@@ -11,6 +11,7 @@ public class CategoriesController(ICategoryService categoryService) : Controller
     [HttpGet]
     public async Task<IActionResult> List()
     {
+        Thread.Sleep(2000);
         var model = await categoryService.List();
         return Ok(model);
     }
