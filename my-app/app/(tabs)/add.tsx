@@ -14,8 +14,10 @@ import ScrollView = Animated.ScrollView;
 import FormField from "@/components/FormField";
 import {useState} from "react";
 import slugify from "slugify";
+import {useCreateCategoryMutation} from "@/services/categoryService";
+import {router} from "expo-router";
 
-export default function AddTabScreen() {
+const AddTabScreen = () => {
 
     const [form, setForm] = useState({
         name: "",
@@ -23,6 +25,8 @@ export default function AddTabScreen() {
     });
 
     const [image, setImage] = useState<string | null>(null);
+
+    const [createCategory, {isLoading}] = useCreateCategoryMutation();
 
     const handleChange = (field: string, text: string) => {
         setForm({...form, [field]: text});
@@ -46,6 +50,33 @@ export default function AddTabScreen() {
             setImage(result.assets[0].uri);
         }
     };
+
+    const handleSubmit = async () => {
+        const formData = new FormData();
+        formData.append("Name", form.name);
+        formData.append("Slug", form.slug);
+
+
+        if (image) {
+            const filename = image.split('/').pop()!;
+            const match = /\.(\w+)$/.exec(filename);
+            const ext = match?.[1];
+            const mimeType = `image/${ext}`;
+
+            formData.append("ImageFile", {
+                uri: image,
+                name: filename,
+                type: mimeType,
+            } as any);
+        }
+        try {
+            const res = await createCategory(formData).unwrap();
+            console.log("Створено категорію", res);
+            router.replace("/");
+        } catch (error) {
+            console.error("Не створено", error);
+        }
+    }
 
     return (
         <SafeAreaProvider>
@@ -101,7 +132,12 @@ export default function AddTabScreen() {
                                 />
                             )}
 
-
+                            <TouchableOpacity
+                                onPress={handleSubmit}
+                                className="w-full bg-red-600 p-3 rounded-lg mt-4"
+                            >
+                                <Text className="text-center text-white font-bold">Додати</Text>
+                            </TouchableOpacity>
 
                         </View>
                     </ScrollView>
@@ -111,4 +147,4 @@ export default function AddTabScreen() {
     );
 }
 
-
+export default AddTabScreen;
