@@ -14,8 +14,8 @@ import ScrollView = Animated.ScrollView;
 import FormField from "@/components/FormField";
 import {useEffect, useState} from "react";
 import slugify from "slugify";
-import {useGetCategoryByIdQuery} from "@/services/categoryService";
-import {useLocalSearchParams} from "expo-router";
+import {useGetCategoryByIdQuery, useUpdateCategoryMutation} from "@/services/categoryService";
+import {router, useLocalSearchParams} from "expo-router";
 import LoadingOverlay from "@/components/LoadingOverlay";
 
 const AddTabScreen = () => {
@@ -43,7 +43,7 @@ const AddTabScreen = () => {
 
     const [image, setImage] = useState<string | null>(null);
 
-    // const [createCategory, {sLoading}] = useCreateCategoryMutation();
+    const [updateCategory, {isLoading}] = useUpdateCategoryMutation();
 
     const handleChange = (field: string, text: string) => {
         setForm({...form, [field]: text});
@@ -70,6 +70,7 @@ const AddTabScreen = () => {
 
     const handleSubmit = async () => {
         const formData = new FormData();
+        formData.append("Id", categoryId);
         formData.append("Name", form.name);
         formData.append("Slug", form.slug);
 
@@ -86,13 +87,13 @@ const AddTabScreen = () => {
                 type: mimeType,
             } as any);
         }
-        // try {
-        //     const res = await createCategory(formData).unwrap();
-        //     console.log("Створено категорію", res);
-        //     router.replace("/");
-        // } catch (error) {
-        //     console.error("Не створено", error);
-        // }
+        try {
+            const res = await updateCategory(formData).unwrap();
+            console.log("Оновив категорію", res);
+            router.replace("/");
+        } catch (error) {
+            console.error("Не створено", error);
+        }
     }
 
     return (
