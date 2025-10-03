@@ -20,6 +20,7 @@ public class CategoriesController(ICategoryService categoryService) : Controller
     [HttpGet("{id}")]
     public async Task<IActionResult> GetItemById(int id)
     {
+        Thread.Sleep(2000);
         var model = await categoryService.GetItemById(id);
         if (model == null)
         {

@@ -1,5 +1,5 @@
 import { Image } from 'expo-image';
-import {  StyleSheet, FlatList, View, Text } from 'react-native';
+import {StyleSheet, FlatList, View, Text, TouchableOpacity} from 'react-native';
 
 import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
@@ -8,12 +8,20 @@ import axios from "axios";
 import {ICategoryItem} from "@/interfaces/category/ICategoryItem";
 import {useGetCategoriesQuery} from "@/services/categoryService";
 import LoadingOverlay from "@/components/LoadingOverlay";
+import {router} from "expo-router";
 
 export default function HomeScreen() {
 
     //Підключаємо спеціальних хук для списку категорій
     const {data: categories, isLoading} = useGetCategoriesQuery();
-    console.log("IsLoading", isLoading);
+    const handleEdit = (itemId: number) => {
+        // тут можна зробити перехід на сторінку редагування
+        router.replace({
+            pathname: "/update",
+            params: { id: itemId },
+        });
+    };
+    // console.log("IsLoading", isLoading);
 
     const renderCategory = ({ item }: { item: ICategoryItem }) => (
         <View style={styles.card}>
@@ -22,6 +30,10 @@ export default function HomeScreen() {
                 style={styles.image}
             />
             <Text style={styles.name}>{item.name}</Text>
+            {/* кнопка Edit */}
+            <TouchableOpacity style={styles.editButton} onPress={() => handleEdit(item.id)}>
+                <Text style={styles.editText}>Edit</Text>
+            </TouchableOpacity>
         </View>
     );
 
@@ -57,12 +69,13 @@ const styles = StyleSheet.create({
     listContainer: {
         gap: 12,
         paddingBottom: 20,
-        paddingTop: 64,        // відступ зверху
-        paddingHorizontal: 16, // відступ зліва і справа
+        paddingTop: 64,
+        paddingHorizontal: 16,
     },
     card: {
         flexDirection: 'row',
         alignItems: 'center',
+        justifyContent: "space-between",
         backgroundColor: '#eee',
         padding: 10,
         borderRadius: 12,
@@ -76,12 +89,16 @@ const styles = StyleSheet.create({
     name: {
         fontSize: 18,
         fontWeight: '600',
+        flex: 1,
     },
-    reactLogo: {
-        height: 178,
-        width: 290,
-        bottom: 0,
-        left: 0,
-        position: 'absolute',
+    editButton: {
+        backgroundColor: "#007AFF",
+        paddingVertical: 6,
+        paddingHorizontal: 12,
+        borderRadius: 8,
+    },
+    editText: {
+        color: "#fff",
+        fontWeight: "600",
     },
 });
