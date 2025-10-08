@@ -14,4 +14,6 @@ public class CategoryEntity : BaseEntity<long>
 
     [StringLength(250)]
     public string Slug { get; set; } = String.Empty;
+
+    public virtual ICollection<ProductEntity>? Products { get; set; }
 }
